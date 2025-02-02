@@ -84,7 +84,7 @@ $itemSum
 ## HINT: 1643 items will be returned. Use count attribute to verify size (Example: $files1.count)
 ## YOUR CODE HERE
 
-$files1 = Get-Item -Path "C:\Windows\System32\driverStore" -Recurse -File
+$files1 = Get-ChildItem -Path "C:\Windows\System32\driverStore" -Recurse -File
 $files1.count 
 
 
