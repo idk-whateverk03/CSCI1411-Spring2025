@@ -7,7 +7,7 @@
   There are a total of 12 problems in this assignment.
 .NOTES
   Version:        1.0
-  Author:         <Your Name>
+  Author:         Emiliy Olmos
 
 #>
 
@@ -23,11 +23,16 @@ cd $Path                                                         #
 ### 1. Create a two int variables $i and $x and assign the value to 122 and 633 respectively.
 ## YOUR CODE HERE
 
+$i = 122
+$x = 633
 
 
 ### 2. Now, add $i and $x together and store the value in another variable $y. 
 ### Then output(print) the value of $y to the console.
 ## YOUR CODE HERE
+
+$y = $i + $x
+$y
 
 
 ### 3. Divide $y by $i and round the answer to the two closest decimal places and 
@@ -35,13 +40,18 @@ cd $Path                                                         #
 ### HINT: Do some research on how to round values in PowerShell online. Lots of examples are available ;)
 ## YOUR CODE HERE
 
-
+$z = $y/$i
+[math]::Round($z)
+$z
 
 ### 4. In PowerShell strings and number variables can added together. 
 ### Create a variable $str and set it to "The value of z is: " and 
 ### add $str and $z together. Then output $str to the console.
 ## YOUR CODE HERE
 
+$str = "The value of z is : "
+$str + $z
+$str
 
 
 
@@ -51,11 +61,16 @@ cd $Path                                                         #
 ### the following collection of integers (10,20,30,40,50,60,70,80,90,100)
 ## YOUR CODE HERE
 
+$arr = @(10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
+
 
 
 ### 2. Create a new variable called $itemSum and store the sum of the 2nd and last item in $arr. 
 ### Print the resule to the console. (10,->20<-,30,40,50,60,70,80,90,->100<-)
 ## YOUR CODE HERE
+
+$itemSum = $arr[1] + $arr[9]
+$itemSum
 
 
 
@@ -69,6 +84,9 @@ cd $Path                                                         #
 ## HINT: 1643 items will be returned. Use count attribute to verify size (Example: $files1.count)
 ## YOUR CODE HERE
 
+$files1 = Get-Item -Path "C:\Windows\System32\driverStore" -Recurse -File
+$files1.count 
+
 
 
 ### 2. Create a variable called $files2 and assign it the output all ".sys" files 
@@ -76,7 +94,8 @@ cd $Path                                                         #
 ## HINT: 329 files returned
 ## YOUR CODE HERE
 
-
+$files2 = Get-ChildItem -Path "C:\Windows\System32\driverStore" -Recurse -Filter "*.sys"
+$files2.count
 
 ### 3. Create a variable called $files3 and assign it the output all ".sys" files 
 ### larger than 500 KB (Length > 500KB) in 
@@ -85,7 +104,8 @@ cd $Path                                                         #
 ## HINT: 51 files returned. 
 ## YOUR CODE HERE
 
-
+$files3 = Get-ChildItem -Path "C:\Windows\System32\driverStore" -Recurse -Filter "*.sys" | Where-Object {$_.Length -gt 512000}
+$files3.count
 
 ### 4.  Create a variable called $files4 and assign it the output all ".sys" files 
 ### that start with the letter s and larger than 500 KB (Length > 500KB) in 
@@ -93,14 +113,15 @@ cd $Path                                                         #
 ## HINT: 2 files returned
 ## YOUR CODE HERE
 
-
+$files4 = Get-ChildItem -Path "C:\Windows\System32\driverStore" - Recurse -Filter "s*.sys" | Where-Object {$_.Length -gt 512000}
+$files4.count
 
 ### 5. Now that the two files we were looking for are found and stored in $files4, 
 ## let's export them out to CSV file named findings.csv
 ## HINT: 1 CSV file should output to the current directory. 
 ## YOUR CODE HERE
 
-
+$files4 | Export-Csv -Path ".\findings.csv" -NoTypeInformation
 
 ### 6. Over 1000 CMDLETS are available in PowerShell, research and find 
 ### a CMDLET to test displays diagnostic information for a network connection. 
@@ -109,6 +130,7 @@ cd $Path                                                         #
 ### Lastly, print $connection to the console. Did it succeed?
 ## YOUR CODE HERE 
 
-
+$connection = Test-NetConnection -ComputerName "ung.edu" -Port 443
+$connection
 
 #----------------------------------------------------------[Complete]-------------------------------------------------------------
