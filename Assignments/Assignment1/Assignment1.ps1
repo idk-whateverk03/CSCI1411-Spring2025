@@ -41,8 +41,9 @@ $y
 ## YOUR CODE HERE
 
 $z = $y/$i
-[math]::Round($z)
+$z = [math]::Round($z)
 $z
+
 
 ### 4. In PowerShell strings and number variables can added together. 
 ### Create a variable $str and set it to "The value of z is: " and 
@@ -50,7 +51,7 @@ $z
 ## YOUR CODE HERE
 
 $str = "The value of z is : "
-$str + $z
+$str = $str + $z
 $str
 
 
@@ -84,7 +85,7 @@ $itemSum
 ## HINT: 1643 items will be returned. Use count attribute to verify size (Example: $files1.count)
 ## YOUR CODE HERE
 
-$files1 = Get-ChildItem -Path "C:\Windows\System32\driverStore" -Recurse -File
+$files1 = Get-ChildItem -Path C:\Windows\System32\driverStore -Recurse -Name
 $files1.count 
 
 
@@ -94,7 +95,7 @@ $files1.count
 ## HINT: 329 files returned
 ## YOUR CODE HERE
 
-$files2 = Get-ChildItem -Path "C:\Windows\System32\driverStore" -Recurse -Filter "*.sys"
+$files2 = Get-ChildItem -Path C:\Windows\System32\driverStore -Recurse -Filter *.sys
 $files2.count
 
 ### 3. Create a variable called $files3 and assign it the output all ".sys" files 
@@ -104,7 +105,7 @@ $files2.count
 ## HINT: 51 files returned. 
 ## YOUR CODE HERE
 
-$files3 = Get-ChildItem -Path "C:\Windows\System32\driverStore" -Recurse -Filter "*.sys" | Where-Object {$_.Length -gt 512000}
+$files3 = Get-ChildItem -Path C:\Windows\System32\driverStore -Recurse -Filter *.sys | Where-Object {$_.Length -gt 512000}
 $files3.count
 
 ### 4.  Create a variable called $files4 and assign it the output all ".sys" files 
@@ -113,7 +114,7 @@ $files3.count
 ## HINT: 2 files returned
 ## YOUR CODE HERE
 
-$files4 = Get-ChildItem -Path "C:\Windows\System32\driverStore" - Recurse -Filter "s*.sys" | Where-Object {$_.Length -gt 512000}
+$files4 = Get-ChildItem -Path C:\Windows\System32\driverStore -Recurse -Filter s*.sys | Where-Object {$_.Length -gt 512000}
 $files4.count
 
 ### 5. Now that the two files we were looking for are found and stored in $files4, 
@@ -121,7 +122,8 @@ $files4.count
 ## HINT: 1 CSV file should output to the current directory. 
 ## YOUR CODE HERE
 
-$files4 | Export-Csv -Path ".\findings.csv" -NoTypeInformation
+$files4 | Export-Csv -Path .\findings.csv -NoTypeInformation
+$files4.count
 
 ### 6. Over 1000 CMDLETS are available in PowerShell, research and find 
 ### a CMDLET to test displays diagnostic information for a network connection. 
@@ -130,7 +132,7 @@ $files4 | Export-Csv -Path ".\findings.csv" -NoTypeInformation
 ### Lastly, print $connection to the console. Did it succeed?
 ## YOUR CODE HERE 
 
-$connection = Test-NetConnection -ComputerName "ung.edu" -Port 443
+$connection = Test-NetConnection ung.edu -Port 443
 $connection
 
 #----------------------------------------------------------[Complete]-------------------------------------------------------------
