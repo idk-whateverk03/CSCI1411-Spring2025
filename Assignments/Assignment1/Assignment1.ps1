@@ -122,6 +122,7 @@ $files4.count
 ## HINT: 1 CSV file should output to the current directory. 
 ## YOUR CODE HERE
 
+$files4 = Add-Content -Path .\findings.csv -Value $files4
 $files4 | Export-Csv -Path .\findings.csv -NoTypeInformation
 $files4.count
 
