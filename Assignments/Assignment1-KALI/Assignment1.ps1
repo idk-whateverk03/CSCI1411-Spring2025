@@ -7,7 +7,7 @@
   There are a total of 12 problems in this assignment. This version of Assignment 1 is slightly modified to work inside Kali virtual environments.
 .NOTES
   Version:        2.0
-  Author:         <Your Name>
+  Author:         Emiliy Olmos
 
 #>
 
@@ -25,10 +25,15 @@ cd $Path                                                         #
 ### 1. Create a two int variables $i and $x and assign the value to 122 and 633 respectively.
 ## YOUR CODE HERE
 
+$i = 122
+$x = 633
 
 ### 2. Now, add $i and $x together and store the value in another variable $y. 
 ### Then output(print) the value of $y to the console.
 ## YOUR CODE HERE
+
+$y = $i + $x
+$y
 
 
 ### 3. Divide $y by $i and round the answer to the two closest decimal places and 
@@ -36,11 +41,19 @@ cd $Path                                                         #
 ### HINT: Do some research on how to round values in PowerShell online. Lots of examples are available ;)
 ## YOUR CODE HERE
 
+$z = $y/$i  
+$z = [math]::Round($z)
+$z
+
 
 ### 4. In PowerShell strings and number variables can added together. 
 ### Create a variable $str and set it to "The value of z is: " and 
 ### add $str and $z together. Then output $str to the console.
 ## YOUR CODE HERE
+
+$str = "The value of z is : "
+$str = $str + $z
+$str
 
 
 #----------------------------------------------------------[Arrays]-------------------------------------------------------
@@ -49,11 +62,15 @@ cd $Path                                                         #
 ### the following collection of integers (10,20,30,40,50,60,70,80,90,100)
 ## YOUR CODE HERE
 
+$arr = @(10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
+
 
 ### 2. Create a new variable called $itemSum and store the sum of the 2nd and last item in $arr. 
 ### Print the resule to the console. (10,->20<-,30,40,50,60,70,80,90,->100<-)
 ## YOUR CODE HERE
 
+$itemSum = $arr[1] + $arr[9]
+$itemSum
 
 #----------------------------------------------------------[CMDLET]-------------------------------------------------------
 ### This section examines the use of CMDLETs to find information. 
@@ -66,18 +83,25 @@ cd $Path                                                         #
 ## HINT: 37 items will be returned. Use count attribute to verify size (Example: $files1.count)
 ## YOUR CODE HERE
 
+$files1 = Get-ChildItem -Path "Datasets" -Recurse 
+$files1.count
+
 
 ### 2. Create a variable called $files2 and assign it the output all ".csv" files 
 ### in "Datasets" using the cmdlet: Get-ChildItem
 ## HINT:  34 files returned
 ## YOUR CODE HERE
 
+$files2 = Get-ChildItem -Path "Datasets" -Recurse -Filter "*.csv"
+$files2.count
 
 ### 3. Create a variable called $files3 and assign it the output all ".csv" files 
 ### larger than 50 KB (Length > 50KB) in "Datasets" using the cmdlet: Get-ChildItem
 ## HINT: 7 files returned. 
 ## YOUR CODE HERE
 
+$files3 = Get-ChildItem -Path "Datasets" -Recurse -Filter "*.csv" | Where-Object {$_.Length -gt 50KB} 
+$files3.count
 
 ### 4.  Create a variable called $files4 and assign it the output all ".csv" files 
 ### that start with the letter "a" and larger than 50 KB (Length > 50KB) in 
@@ -85,12 +109,16 @@ cd $Path                                                         #
 ## HINT: 2 files returned
 ## YOUR CODE HERE
 
+$files4 = Get-ChildItem -Path "Datasets" -Recurse -Filter "a*.csv" | Where-Object {$_.Length -gt 50KB}
+$files4.count
 
 ### 5. Now that the two files we were looking for are found and stored in $files4, 
 ## let's export them out to CSV file named findings.csv
 ## HINT: 1 CSV file should output to the current directory. 
 ## YOUR CODE HERE
 
+$files4[0] | Export-Csv -Path "findings.csv" 
+$files4[0]
 
 ### 6. Over 1000 CMDLETS are available in PowerShell, research and find 
 ### a CMDLET to test displays running processes on a system.
@@ -99,5 +127,7 @@ cd $Path                                                         #
 ### Lastly, print $processes to the console. Did it succeed?
 ## YOUR CODE HERE 
 
+$processes = Get-Process -Id 8267
+$processes
 
 #----------------------------------------------------------[Complete]-------------------------------------------------------------
