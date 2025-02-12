@@ -39,7 +39,7 @@ cd $Path                                                         #              
 # Keep in mind that you are building a function below.
 # As you build your function, you can test it out by completing #6-8 and running the entire script.
 # YOUR CODE BELOW HERE (*Note the lefthand curly brace already provided for your function)
-function crackLogin ($username,$passwordList) {
+function crackLogin ($username, $passwordList) {
     # 2. Below you will attempt each password in the pasword list for your brute force attack! 
     # Write a foreach loop method to itereate through each common password in the password file. 
     # (Hint: Check out the argument names you provided to the function, agian the first lefthand curly brace provided)
